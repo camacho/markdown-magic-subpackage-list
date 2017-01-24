@@ -33,9 +33,11 @@ markdownMagic(markdownPath, config);
 
 ## Usage in markdown
 
-<!-- AUTO-GENERATED-CONTENT:START (SUBPACKAGELIST:dir=./packages) -->
-* [example-package](packages/example)
+<!-- AUTO-GENERATED-CONTENT:START (SUBPACKAGELIST:verbose=true) -->
+* [example-package](packages/example) - example package description for the demo
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Options
 * **dir** - `./packages` by default
+* **verbose** - `false` by default - print out description of package
+* **bullet** - `*` by default - set to `1.` to create a numbered list

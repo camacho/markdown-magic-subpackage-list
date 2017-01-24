@@ -2,7 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const defaults = {
-  dir: './packages'
+  dir: './packages',
+  verbose: false,
+  bullet: '*'
 }
 
 module.exports = function SUBPACKAGELIST(content, _options, config) {
@@ -17,8 +19,12 @@ module.exports = function SUBPACKAGELIST(content, _options, config) {
     .filter(dirPath => fs.existsSync(path.join(dirPath, 'package.json')))
     .map(dirPath => [
       path.relative(path.dirname(config.originalPath), dirPath),
-      require(path.join(dirPath, 'package.json')).name
-    ]).map(([link, packageName]) => (
-      `* [${packageName}](${link})`
-    )).join('\n');
+      require(path.join(dirPath, 'package.json'))
+    ]).map(([link, package]) => {
+      let entry = `${options.bullet} [${package.name}](${link})`;
+      if (options.verbose === 'true' && package.description.trim().length) {
+        entry += ` - ${package.description.trim()}`
+      }
+      return entry;
+    }).join('\n');
 }

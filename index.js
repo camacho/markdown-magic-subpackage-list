@@ -10,7 +10,9 @@ const defaults = {
 module.exports = function SUBPACKAGELIST(content, _options, config) {
   const options = Object.assign({}, defaults, _options);
 
-  const packagesDir = path.resolve(process.cwd(), options.dir);
+  const packagesDir = path.resolve(
+    path.dirname(config.originalPath), options.dir
+  );
 
   return fs
     .readdirSync(packagesDir)

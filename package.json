@@ -1,20 +1,7 @@
 {
   "name": "markdown-magic-subpackage-list",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Print a list of subpackages for markdown file",
-  "main": "index.js",
-  "scripts": {
-    "docs": "node example.js",
-    "prepublish": "npm run docs"
-  },
-  "keywords": [
-    "markdown-magic",
-    "lerna",
-    "sub-package",
-    "list",
-    "plugin"
-  ],
-  "author": "Patrick Camacho <patrick@daftdevelopers.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -24,7 +11,25 @@
     "url": "https://github.com/camacho/markdown-magic-subpackage-list/issues"
   },
   "homepage": "https://github.com/camacho/markdown-magic-subpackage-list#readme",
+  "author": "Patrick Camacho <patrick@daftdevelopers.com>",
+  "keywords": [
+    "markdown-magic",
+    "lerna",
+    "sub-package",
+    "list",
+    "plugin"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "docs": "node example.js",
+    "format": "prettier --single-quote --trailing-comma es5 --write index.js example.js",
+    "prepublish": "npm run docs"
+  },
+  "peerDependencies": {
+    "markdown-magic": ">=0.1 <=2.x"
+  },
   "devDependencies": {
-    "markdown-magic": "^0.1.12"
+    "markdown-magic": "^2.0.0",
+    "prettier": "^2.0.0"
   }
 }

@@ -1,7 +1,8 @@
 {
   "name": "markdown-magic-subpackage-list",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Print a list of subpackages for markdown file",
+  "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -20,16 +21,28 @@
     "plugin"
   ],
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
-    "docs": "node example.js",
-    "format": "prettier --single-quote --trailing-comma es5 --write index.js example.js",
-    "prepublish": "npm run docs"
+    "test": "vitest run",
+    "docs": "node example.js && prettier --write README.md",
+    "prepublishOnly": "npm run docs",
+    "format": "prettier --write ."
+  },
+  "prettier": {
+    "singleQuote": true
   },
   "peerDependencies": {
-    "markdown-magic": ">=0.1 <=2.x"
+    "markdown-magic": "^4"
   },
   "devDependencies": {
-    "markdown-magic": "^2.0.0",
-    "prettier": "^2.0.0"
+    "markdown-magic": "^4.0.0",
+    "prettier": "^3.0.0",
+    "vitest": "^4.0.0"
   }
 }

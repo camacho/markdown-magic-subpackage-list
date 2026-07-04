@@ -12,12 +12,7 @@ describe('markdown-magic-subpackage-list', () => {
         options: { verbose: 'true' },
         srcPath,
       }),
-    ).toBe(
-      [
-        '* [pkg-a](packages/pkg-a) - Package A description',
-        '* [pkg-b](packages/pkg-b)',
-      ].join('\n'),
-    );
+    ).toMatchSnapshot();
   });
 
   it('omits descriptions when not verbose, honors a custom bullet, and skips non-package entries', () => {
@@ -27,9 +22,7 @@ describe('markdown-magic-subpackage-list', () => {
       srcPath,
     });
 
-    expect(result).toBe(
-      ['1. [pkg-a](packages/pkg-a)', '1. [pkg-b](packages/pkg-b)'].join('\n'),
-    );
+    expect(result).toMatchSnapshot();
     expect(result).not.toContain('not-a-package');
     expect(result).not.toContain('stray-file');
   });

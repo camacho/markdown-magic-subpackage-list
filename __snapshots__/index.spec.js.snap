@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`markdown-magic-subpackage-list > omits descriptions when not verbose, honors a custom bullet, and skips non-package entries 1`] = `
+"1. [pkg-a](packages/pkg-a)
+1. [pkg-b](packages/pkg-b)"
+`;
+
+exports[`markdown-magic-subpackage-list > renders a bulleted list of subpackages with descriptions when verbose 1`] = `
+"* [pkg-a](packages/pkg-a) - Package A description
+* [pkg-b](packages/pkg-b)"
+`;

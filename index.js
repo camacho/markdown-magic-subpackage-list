@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 const defaults = {
   dir: './packages',
@@ -7,13 +7,10 @@ const defaults = {
   bullet: '*',
 };
 
-module.exports = function SUBPACKAGELIST(content, _options, config) {
-  const options = Object.assign({}, defaults, _options);
+export default function SUBPACKAGELIST({ content, options = {}, srcPath }) {
+  const opts = Object.assign({}, defaults, options);
 
-  const packagesDir = path.resolve(
-    path.dirname(config.originalPath),
-    options.dir
-  );
+  const packagesDir = path.resolve(path.dirname(srcPath), opts.dir);
 
   return fs
     .readdirSync(packagesDir)
@@ -21,15 +18,16 @@ module.exports = function SUBPACKAGELIST(content, _options, config) {
     .filter((filePath) => fs.statSync(filePath).isDirectory())
     .filter((dirPath) => fs.existsSync(path.join(dirPath, 'package.json')))
     .map((dirPath) => [
-      path.relative(path.dirname(config.originalPath), dirPath),
-      require(path.join(dirPath, 'package.json')),
+      path.relative(path.dirname(srcPath), dirPath),
+      JSON.parse(fs.readFileSync(path.join(dirPath, 'package.json'), 'utf8')),
     ])
-    .map(([link, package]) => {
-      let entry = `${options.bullet} [${package.name}](${link})`;
-      if (options.verbose === 'true' && package.description.trim().length) {
-        entry += ` - ${package.description.trim()}`;
+    .map(([link, pkg]) => {
+      let entry = `${opts.bullet} [${pkg.name}](${link})`;
+      const description = pkg.description?.trim();
+      if (opts.verbose === 'true' && description?.length) {
+        entry += ` - ${description}`;
       }
       return entry;
     })
     .join('\n');
-};
+}

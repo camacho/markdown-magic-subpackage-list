@@ -1,3 +1,5 @@
+> **📦 This package has moved.** It now lives in the [markdown-magic-plugins](https://github.com/camacho/markdown-magic-plugins) monorepo at [`packages/subpackage-list`](https://github.com/camacho/markdown-magic-plugins/tree/main/packages/subpackage-list). This repository is archived; issues and contributions go to the monorepo.
+
 # Subpackage list plugin
 
 Add a list of sub-packages with links via [markdown-magic](https://github.com/DavidWells/markdown-magic)
